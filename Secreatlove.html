@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Secret Love 💌</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg,#180014,#4d002d);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: Arial;
+    color: white;
+}
+
+h1 {
+    color: pink;
+    margin-bottom: 50px;
+    text-shadow: 0 0 15px hotpink;
+}
+
+.envelope {
+    width: 230px;
+    height: 150px;
+    background: #ff4d88;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 0 30px #ff176b;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 115px solid transparent;
+    border-right: 115px solid transparent;
+    border-top: 85px solid #ff8eae;
+    transform-origin: top;
+    transition: 0.8s;
+    z-index: 3;
+}
+
+.letter {
+    position: absolute;
+    background: #fff0f5;
+    color: #d4145a;
+    width: 190px;
+    min-height: 125px;
+    left: 20px;
+    top: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    transition: 1s;
+    z-index: 2;
+}
+
+.envelope.open .letter {
+    transform: translateY(-145px);
+    z-index: 5;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+button {
+    margin-top: 65px;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4d88;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 15px pink;
+}
+
+.heart {
+    position: absolute;
+    bottom: -30px;
+    color: pink;
+    animation: float 5s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>💌 Secret Love 💌</h1>
+
+<div class="envelope" id="envelope">
+    <div class="letter">
+Dear Someone, You make the world more beautiful ❤️
+    </div>
+</div>
+
+<button id="openBtn" onclick="openLetter()">
+    Open My Letter 💗
+</button>
+
+<script>
+
+function openLetter() {
+
+    const envelope = document.getElementById("envelope");
+    const button = document.getElementById("openBtn");
+
+    envelope.classList.toggle("open");
+
+    if (envelope.classList.contains("open")) {
+        button.innerHTML = "Close My Letter 💌";
+
+        for(let i = 0; i < 20; i++) {
+
+            setTimeout(() => {
+
+                let heart = document.createElement("div");
+
+                heart.className = "heart";
+                heart.innerHTML = "❤️";
+
+                heart.style.left =
+                Math.random() * 100 + "vw";
+
+                heart.style.fontSize =
+                (15 + Math.random() * 25) + "px";
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 5000);
+
+            }, i * 100);
+        }
+
+    } else {
+        button.innerHTML = "Open My Letter 💗";
+    }
+}
+
+</script>
+
+</body>
+</html>
